@@ -2284,8 +2284,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 18917f93e857afc47aee0b5d62bb1d98, type: 3}
       propertyPath: m_Name
-      value: Ch06_nonPBR@Idle
+      value: PlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 18917f93e857afc47aee0b5d62bb1d98, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 702e48f1f19b9ac4e9f21ec277249b34, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18917f93e857afc47aee0b5d62bb1d98, type: 3}
 --- !u!850595691 &1008763821
