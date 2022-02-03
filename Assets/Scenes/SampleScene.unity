@@ -8520,6 +8520,7 @@ MonoBehaviour:
   walkSpeed: 5
   runSpeed: 10
   jumpForce: 5
+  followTarget: {fileID: 1323422611}
   aimSensitivity: 1
 --- !u!114 &1705332000464712884
 MonoBehaviour:

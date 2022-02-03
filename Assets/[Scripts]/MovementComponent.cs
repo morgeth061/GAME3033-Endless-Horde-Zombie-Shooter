@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class MovementComponent : MonoBehaviour
 {
@@ -18,13 +20,14 @@ public class MovementComponent : MonoBehaviour
     private PlayerController playerController;
     private Rigidbody rigidbody;
     private Animator playerAnimator;
+    public GameObject followTarget;
 
     //References
     private Vector2 inputVector = Vector2.zero;
     private Vector3 moveDirection = Vector3.zero;
     private Vector2 lookInput = Vector2.zero;
 
-    public float aimSensitivity = 1;
+    public float aimSensitivity = 0.2f;
 
     //animator hashes
     public readonly int movementXHash = Animator.StringToHash("MovementX");
@@ -48,6 +51,41 @@ public class MovementComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //aiming/looking
+        //horizontal
+        followTarget.transform.rotation *= Quaternion.AngleAxis(lookInput.x * aimSensitivity, Vector3.up);
+        //vertical
+        followTarget.transform.rotation *= Quaternion.AngleAxis(lookInput.y * aimSensitivity, Vector3.left);
+
+        var angles = followTarget.transform.localEulerAngles;
+        angles.z = 0;
+
+        var angle = followTarget.transform.localEulerAngles.x;
+
+        if (angle > 180 && angle < 340)
+        {
+            angles.x = 340;
+        }
+        else if (angle < 180 && angle > 40)
+        {
+            angles.x = 40;
+        }
+
+        followTarget.transform.localEulerAngles = angles;
+
+        transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
+
+        followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+
+
+
+
+
+
+
+
+
+        //Movement
         if (playerController.isJumping) return;
 
         if (!(inputVector.magnitude > 0)) moveDirection = Vector3.zero;
