@@ -22,6 +22,9 @@ public class MovementComponent : MonoBehaviour
     //References
     private Vector2 inputVector = Vector2.zero;
     private Vector3 moveDirection = Vector3.zero;
+    private Vector2 lookInput = Vector2.zero;
+
+    public float aimSensitivity = 1;
 
     //animator hashes
     public readonly int movementXHash = Animator.StringToHash("MovementX");
@@ -65,17 +68,39 @@ public class MovementComponent : MonoBehaviour
     public void OnRun(InputValue value)
     {
         playerController.isRunning = value.isPressed;
+        playerAnimator.SetBool("IsRunning", value.isPressed);
     }
 
     public void OnJump(InputValue value)
     {
         playerController.isJumping = value.isPressed;
+        playerAnimator.SetBool("IsJumping", value.isPressed);
         rigidbody.AddForce((transform.up + moveDirection) * jumpForce, ForceMode.Impulse);
+    }
+
+    public void OnAim(InputValue value)
+    {
+        playerController.isAiming = value.isPressed;
+    }
+
+    public void OnLook(InputValue value)
+    {
+        lookInput = value.Get<Vector2>();
+    }
+
+    public void OnFire(InputValue value)
+    {
+
+    }
+
+    public void OnReload(InputValue value)
+    {
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("Ground") && !playerController.isJumping) return;
-        playerController.isJumping = false;
+        playerController.isJumping = false; playerAnimator.SetBool("IsJumping", false);
     }
 }
