@@ -1525,6 +1525,7 @@ GameObject:
   - component: {fileID: 1255139667084354383}
   - component: {fileID: 7674921957238207793}
   - component: {fileID: 3362876029045719028}
+  - component: {fileID: 7534726329310003516}
   - component: {fileID: 6595714557197881414}
   - component: {fileID: 6595714557197881410}
   m_Layer: 0
@@ -1649,6 +1650,20 @@ MonoBehaviour:
   jumpForce: 5
   followTarget: {fileID: 6289776746314541064}
   aimSensitivity: 0.1
+--- !u!114 &7534726329310003516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595714557197881421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a356a0a9682b3744aa95b6358bd21a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 250
+  maxHealth: 250
 --- !u!54 &6595714557197881414
 Rigidbody:
   m_ObjectHideFlags: 0
